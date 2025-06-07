@@ -1,0 +1,109 @@
+:root {
+    --body-bg: #ffffff;
+    --general-text: #212529;
+    --navbar-dropdown-bg: #ffffff;
+    --navbar-dropdown-text: #212529;
+    --card-bg: #ffffff;
+    --card-border: #e0e0e0;
+    --card-shadow: rgba(0, 0, 0, 0.08);
+    --btn-success-bg: #198754;
+    --btn-success-hover-bg: #157347;
+}
+
+[data-theme='dark'] {
+    --body-bg: #1a1a1a;
+    --general-text: #e9ecef;
+    --navbar-dropdown-bg: #343a40;
+    --navbar-dropdown-text: #e9ecef;
+    --card-bg: #2d2d2d;
+    --card-border: #444444;
+    --card-shadow: rgba(0, 0, 0, 0.3);
+    --btn-success-bg: #28a745;
+    --btn-success-hover-bg: #218838;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--body-bg);
+    color: var(--general-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    background-color: #003366 !important;
+}
+
+.navbar .nav-link,
+.navbar .btn {
+    color: white !important;
+}
+
+.navbar .btn-outline-light {
+    color: rgba(255, 255, 255, 0.8) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.navbar .btn-outline-light:hover {
+    color: rgba(255, 255, 255, 1) !important;
+    border-color: rgba(255, 255, 255, 1) !important;
+}
+
+#darkModeToggle {
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+#darkModeToggle:hover {
+    color: #ffd700 !important;
+}
+
+.navbar .dropdown-menu {
+    background-color: var(--navbar-dropdown-bg);
+    border-color: var(--navbar-dropdown-bg);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.navbar .dropdown-item {
+    color: var(--navbar-dropdown-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar .dropdown-item:hover {
+    background-color: rgba(var(--navbar-dropdown-text), 0.1);
+    color: var(--navbar-dropdown-text);
+}
+
+h2 {
+    color: var(--general-text);
+    transition: color 0.3s ease;
+}
+
+.plan-card, .summary-box {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    box-shadow: 0 0.125rem 0.25rem var(--card-shadow);
+    color: var(--general-text);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+
+.plan-card p, .summary-box h5 {
+    color: var(--general-text); /* Ensure text within cards/summary is also themed */
+    transition: color 0.3s ease;
+}
+
+.btn.btn-success {
+    background-color: var(--btn-success-bg);
+    border-color: var(--btn-success-bg);
+    color: white;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.btn.btn-success:hover {
+    background-color: var(--btn-success-hover-bg);
+    border-color: var(--btn-success-hover-bg);
+    color: white;
+}

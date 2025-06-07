@@ -1,0 +1,157 @@
+/* static/css/portfolio-style.css */
+:root {
+    /* Light mode colors */
+    --text-color: #333;
+    --background-start: #e0e7ff; /* indigo-50 */
+    --background-end: #ede9fe;   /* purple-50 */
+    --card-bg: #ffffff;
+    --card-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    --card-border: 1px solid rgba(229, 231, 235, 0.8);
+    --heading-color: #374151; /* gray-700 */
+    --paragraph-color: #4b5563; /* gray-600 */
+    --profit-text-color: #10b981; /* green-500 */
+    --loss-text-color: #ef4444; /* red-500 */
+    --table-header-bg: #f3f4f6; /* gray-100 */
+    --table-text-color: #374151; /* gray-800 for table content */
+    --table-border-color: #e5e7eb; /* gray-200 */
+
+    /* Chart specific colors (light mode) */
+    --chart-title-color: #374151;
+    --chart-tick-color: #4b5563;
+    --chart-grid-color: #e5e7eb;
+
+    /* Default chart colors (you might want to customize these) */
+    --chart-color-1: rgba(255, 99, 132, 0.8); /* Red */
+    --chart-color-2: rgba(54, 162, 235, 0.8); /* Blue */
+    --chart-color-3: rgba(255, 206, 86, 0.8); /* Yellow */
+    --chart-color-4: rgba(75, 192, 192, 0.8); /* Green */
+    --chart-color-5: rgba(153, 102, 255, 0.8); /* Purple */
+    --chart-color-6: rgba(255, 159, 64, 0.8);  /* Orange */
+
+    --chart-border-color-1: rgba(255, 99, 132, 1);
+    --chart-border-color-2: rgba(54, 162, 235, 1);
+    --chart-border-color-3: rgba(255, 206, 86, 1);
+    --chart-border-color-4: rgba(75, 192, 192, 1);
+    --chart-border-color-5: rgba(153, 102, 255, 1);
+    --chart-border-color-6: rgba(255, 159, 64, 1);
+
+    --profit-text-color-chart: #10b981; /* green-500 */
+    --loss-text-color-chart: #ef4444; /* red-500 */
+}
+
+/* Dark mode colors - targeting body[data-theme='dark'] */
+body[data-theme='dark'] {
+    --text-color: #e0e0e0;
+    --background-start: #1a202c; /* dark gray/blue */
+    --background-end: #2d3748;   /* slightly lighter dark gray/blue */
+    --card-bg: #2d3748;
+    --card-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    --card-border: 1px solid rgba(55, 65, 81, 0.8);
+    --heading-color: #f3f4f6; /* gray-100 */
+    --paragraph-color: #d1d5db; /* gray-400 */
+    --profit-text-color: #34d399; /* green-400 for contrast */
+    --loss-text-color: #f87171; /* red-400 for contrast */
+    --table-header-bg: #4a5568; /* darker gray */
+    --table-text-color: #e0e0e0; /* light gray for table content */
+    --table-border-color: #4a5568; /* darker gray */
+
+    /* Chart specific colors (dark mode) */
+    --chart-title-color: #f3f4f6;
+    --chart-tick-color: #d1d5db;
+    --chart-grid-color: #4a5568;
+
+    /* Chart colors in dark mode (adjust for better visibility if needed) */
+    --chart-color-1: rgba(255, 99, 132, 0.6);
+    --chart-color-2: rgba(54, 162, 235, 0.6);
+    --chart-color-3: rgba(255, 206, 86, 0.6);
+    --chart-color-4: rgba(75, 192, 192, 0.6);
+    --chart-color-5: rgba(153, 102, 255, 0.6);
+    --chart-color-6: rgba(255, 159, 64, 0.6);
+
+    --chart-border-color-1: rgba(255, 99, 132, 0.8);
+    --chart-border-color-2: rgba(54, 162, 235, 0.8);
+    --chart-border-color-3: rgba(255, 206, 86, 0.8);
+    --chart-border-color-4: rgba(75, 192, 192, 0.8);
+    --chart-border-color-5: rgba(153, 102, 255, 0.8);
+    --chart-border-color-6: rgba(255, 159, 64, 0.8);
+
+    --profit-text-color-chart: #34d399;
+    --loss-text-color-chart: #f87171;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color);
+    background: linear-gradient(to bottom right, var(--background-start), var(--background-end));
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+    max-width: 1024px;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: 1rem;
+    box-shadow: var(--card-shadow);
+    padding: 1.5rem;
+    border: var(--card-border);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+h1, h2 {
+    color: var(--heading-color);
+    transition: color 0.3s ease;
+}
+
+p, ul, li {
+    color: var(--paragraph-color);
+    transition: color 0.3s ease;
+}
+
+.profit-text {
+    color: var(--profit-text-color);
+}
+
+.loss-text {
+    color: var(--loss-text-color);
+}
+
+table {
+    background-color: var(--card-bg); /* Use card background for table itself */
+    color: var(--table-text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+thead {
+    background-color: var(--table-header-bg);
+    transition: background-color 0.3s ease;
+}
+
+th {
+    color: var(--paragraph-color); /* Use paragraph color for header text */
+}
+
+tbody.divide-y > tr:not(:last-child) {
+    border-bottom: 1px solid var(--table-border-color);
+}
+
+/* Specific adjustments for dark mode in tables if needed */
+body[data-theme='dark'] table {
+    /* Additional dark mode table styling if default variable usage isn't enough */
+}
+
+body[data-theme='dark'] .card .bg-gray-100 {
+    background-color: var(--table-header-bg);
+}
+
+/* Ensure canvas takes full width but respects aspect ratio */
+canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Adjust text color for chart fallback messages */
+body[data-theme='dark'] .chart-fallback-text {
+    color: var(--chart-tick-color);
+}

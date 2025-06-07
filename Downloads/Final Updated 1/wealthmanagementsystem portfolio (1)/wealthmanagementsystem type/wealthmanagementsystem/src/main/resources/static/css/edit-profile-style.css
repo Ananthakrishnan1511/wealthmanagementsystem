@@ -1,0 +1,129 @@
+:root {
+    --body-bg: #ffffff;
+    --general-text: #212529;
+    --card-bg: #ffffff;
+    --card-border: #dee2e6;
+    --form-label-color: #343a40; 
+    --form-input-bg: #ffffff;
+    --form-input-border: #ced4da;
+    --form-input-text: #212529;
+    --btn-primary-bg: #0d6efd;
+    --btn-primary-border: #0d6efd;
+    --btn-primary-hover-bg: #0b5ed7;
+    --btn-primary-hover-border: #0a58ca;
+}
+
+[data-theme='dark'] {
+    --body-bg: #000000;
+    --general-text: #e9ecef;
+    --card-bg: #343a40;
+    --card-border: #495057;
+    --form-label-color: #ced4da;
+    --form-input-bg: #495057;
+    --form-input-border: #6c757d;
+    --form-input-text: #e9ecef;
+    --btn-primary-bg: #5EEBFF;
+    --btn-primary-border: #5EEBFF;
+    --btn-primary-hover-bg: #3DDFFF;
+    --btn-primary-hover-border: #3DDFFF;
+}
+
+body {
+    background-color: var(--body-bg);
+    color: var(--general-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+}
+
+.navbar {
+    background-color: #003366 !important;
+}
+
+.navbar .btn-outline-light {
+    color: rgba(255, 255, 255, 0.8) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.navbar .btn-outline-light:hover {
+    color: rgba(255, 255, 255, 1) !important;
+    border-color: rgba(255, 255, 255, 1) !important;
+}
+
+#darkModeToggle {
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+#darkModeToggle:hover {
+    color: #ffd700 !important;
+}
+
+.profile-container {
+    max-width: 500px;
+    margin: 0 auto;
+    border-radius: 0.75rem;
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+[data-theme='dark'] .profile-container {
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.5);
+}
+
+.profile-container .card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--general-text);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.profile-container .card h3 {
+    color: var(--general-text) !important;
+}
+
+.profile-container .card p {
+    color: var(--general-text);
+}
+
+.profile-container .card .form-label {
+    color: var(--form-label-color);
+}
+
+.profile-container .card .form-control {
+    background-color: var(--form-input-bg);
+    border-color: var(--form-input-border);
+    color: var(--form-input-text);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.profile-container .card .form-control:focus {
+    background-color: var(--form-input-bg); 
+    border-color: var(--btn-primary-bg); 
+    box-shadow: 0 0 0 0.25rem rgba(var(--btn-primary-bg-rgb, 13, 110, 253), .25); 
+    color: var(--form-input-text);
+}
+
+.profile-container .card .btn-primary {
+    background-color: var(--btn-primary-bg);
+    border-color: var(--btn-primary-border);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.profile-container .card .btn-primary:hover {
+    background-color: var(--btn-primary-hover-bg);
+    border-color: var(--btn-primary-hover-border);
+}
+
+@media (max-width: 767.98px) {
+    .profile-container {
+        margin: 0 1rem;
+    }
+}

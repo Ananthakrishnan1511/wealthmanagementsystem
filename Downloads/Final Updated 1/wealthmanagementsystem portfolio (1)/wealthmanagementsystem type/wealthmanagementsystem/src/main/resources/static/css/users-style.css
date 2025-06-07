@@ -1,0 +1,218 @@
+/* Custom CSS for Admin Dashboard */
+
+:root {
+    --light-bg: #ffffff; /* Solid White for Bright Mode Body Background */
+    --light-text: #212529; /* Default text color */
+    --light-card-bg: #ffffff; /* Background for the table wrapper */
+    --light-border: #dee2e6; /* Border for the table wrapper */
+    --light-primary: #5EEBFF;
+    --bs-primary: #5EEBFF;
+    --light-hover-link: #3DDFFF;
+    
+    --light-table-bg: #fdfdfd; /* Background for individual table rows */
+    --light-table-hover: #e6e6e6; /* Hover background for table rows */
+    --light-table-line: #e0e0e0; /* Horizontal line color inside table */
+
+    --light-btn-success-bg: #28a745;
+    --light-btn-success-border: #28a745;
+    --light-btn-danger-bg: #dc3545;
+    --light-btn-danger-border: #dc3545;
+}
+
+[data-theme='dark'] {
+    --light-bg: #000000; /* Solid Black for Dark Mode Body Background */
+    --light-text: #e9ecef; /* Default text color for dark mode */
+    --light-card-bg: #343a40; /* Dark background for the table wrapper */
+    --light-border: #495057; /* Dark border for the table wrapper */
+    --light-primary: #5EEBFF;
+    --bs-primary: #5EEBFF;
+    --light-hover-link: #3DDFFF;
+
+    --light-table-bg: #2c3135; /* Dark background for individual table rows */
+    --light-table-hover: #3d4349; /* Dark hover background for table rows */
+    --light-table-line: #42474e; /* Dark horizontal line color inside table */
+
+    --light-btn-success-bg: #218838;
+    --light-btn-success-border: #1e7e34;
+    --light-btn-danger-bg: #c82333;
+    --light-btn-danger-border: #bd2130;
+}
+
+body {
+    background-color: var(--light-bg); /* Use theme variable for solid background */
+    /* Removed background-image, background-size, background-position, background-repeat, background-attachment */
+    color: var(--light-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+}
+
+/* Removed body::before as there is no background image to overlay anymore */
+
+.navbar {
+    background-color: #003366 !important;
+}
+
+.navbar .nav-link,
+.navbar .btn {
+    color: rgba(255, 255, 255, 0.8) !important;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .btn:hover {
+    color: rgba(255, 255, 255, 1) !important;
+}
+
+.navbar-brand img {
+    filter: brightness(1.2);
+}
+
+#darkModeToggle {
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+#darkModeToggle:hover {
+    color: #ffd700 !important;
+}
+
+.table-wrapper {
+    max-width: 800px;
+    background-color: var(--light-card-bg);
+    border: 1px solid var(--light-border);
+    border-radius: 0.75rem;
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    padding: 1.5rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+[data-theme='dark'] .table-wrapper {
+    background-color: var(--light-card-bg);
+    border: 1px solid var(--light-border);
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.5);
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 0;
+    background-color: transparent;
+    color: var(--light-text);
+    border-collapse: collapse;
+}
+
+.table thead {
+    background-color: var(--light-table-bg);
+    color: var(--light-text);
+}
+
+.table th {
+    border-bottom: 1px solid var(--light-table-line);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding: 0.75rem 1rem;
+}
+
+.table tbody tr {
+    background-color: var(--light-table-bg);
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    border-bottom: 1px solid var(--light-table-line);
+}
+
+.table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.table tbody tr:hover {
+    background-color: var(--light-table-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.08);
+}
+
+[data-theme='dark'] .table tbody tr:hover {
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+}
+
+.table td {
+    border: none;
+    vertical-align: middle;
+    padding: 0.75rem 1rem;
+}
+
+.table .btn-success {
+    background-color: var(--light-btn-success-bg);
+    border-color: var(--light-btn-success-border);
+    color: white;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.table .btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+    opacity: 0.9;
+}
+
+.table .btn-danger {
+    background-color: var(--light-btn-danger-bg);
+    border-color: var(--light-btn-danger-border);
+    color: white;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.table .btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+    opacity: 0.9;
+}
+
+.form-label {
+    color: var(--light-text);
+    font-weight: 600;
+}
+
+@media (max-width: 767.98px) {
+    .table-wrapper {
+        padding: 1rem;
+        margin: 1rem;
+    }
+    .table thead {
+        display: none;
+    }
+    .table tbody tr {
+        display: block;
+        margin-bottom: 0.625rem;
+        border: 1px solid var(--light-table-line);
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+    }
+    .table tbody td {
+        display: block;
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        border: none;
+    }
+    .table tbody td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0.75rem;
+        width: calc(50% - 1.5rem);
+        padding-right: 0.5rem;
+        text-align: left;
+        font-weight: bold;
+        color: var(--light-primary);
+    }
+    .table tbody tr:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    .action-buttons {
+        text-align: left !important;
+        padding-left: 0.75rem !important;
+    }
+}

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Investment Portfolio</title>
+ 
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" th:href="@{/css/portfolio-style.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="flex flex-col min-h-screen">
+ 
+    <nav class="bg-blue-900 shadow-sm px-4 py-3 text-white flex items-center justify-between">
+        <div class="flex items-center">
+            <a class="font-bold text-xl" href="#">
+                <img th:src="@{/images/Wealth Front.png}" alt="Wealthy Logo" class="h-10 filter brightness-125">
+            </a>
+        </div>
+        <div class="hidden md:flex flex-grow justify-center">
+            <ul class="flex space-x-6">
+                <li><a class="hover:text-gray-300 font-semibold text-lg" th:href="@{/main}">About</a></li>
+                <li class="relative group">
+                    <a class="hover:text-gray-300 font-semibold text-lg flex items-center" th:href="@{/auth/investment}" id="planningDropdown">
+                        Planning
+                    </a>
+                </li>
+                <li><a class="hover:text-gray-300 font-semibold text-lg" th:href="@{/view}">Portfolio</a></li>
+                <li><a class="hover:text-gray-300 font-semibold text-lg" th:href="@{/report}">Report</a></li>
+               
+            </ul>
+        </div>
+        <div class="flex items-center space-x-4">
+            <button id="darkModeToggle" class="text-white hover:text-yellow-400 text-xl focus:outline-none">
+                <i class="fas fa-moon"></i>
+            </button>
+            <a class="bg-transparent border border-white text-white px-4 py-2 rounded-lg font-semibold hover:bg-white hover:text-blue-900 transition-colors duration-300" th:href="@{/}">Logout</a>
+        </div>
+        <button id="mobileMenuButton" class="md:hidden text-white text-xl focus:outline-none">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+ 
+    <div id="mobileMenu" class="md:hidden bg-blue-800 text-white p-4 space-y-2 hidden">
+        <a class="block px-3 py-2 hover:bg-blue-700 rounded-md" th:href="@{/auth/main}">About</a>
+        <div class="relative">
+            <button class="w-full text-left px-3 py-2 hover:bg-blue-700 rounded-md flex items-center justify-between" id="mobilePlanningDropdown">
+                Planning
+                <svg class="ml-1 w-4 h-4 transform transition-transform duration-300" id="mobilePlanningDropdownIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div id="mobilePlanningDropdownMenu" class="hidden bg-blue-700 rounded-md mt-1">
+                <a class="block px-5 py-2 hover:bg-blue-600" th:href="@{/auth/stocks}">📈 Stocks</a>
+                <a class="block px-5 py-2 hover:bg-blue-600" th:href="@{/auth/mutualfunds}">📊 Mutual Funds</a>
+                <a class="block px-5 py-2 hover:bg-blue-600" th:href="@{/auth/gold}">🏆 Gold</a>
+                <a class="block px-5 py-2 hover:bg-blue-600" th:href="@{/auth/summary}">📋 Chosen Plan</a>
+            </div>
+        </div>
+        <a class="block px-3 py-2 hover:bg-blue-700 rounded-md" href="#">Portfolio</a>
+        <a class="block px-3 py-2 hover:bg-blue-700 rounded-md" href="#">Report</a>
+        <a class="block px-3 py-2 hover:bg-blue-700 rounded-md" th:href="@{/login}">Login</a>
+    </div>
+    <div class="container mx-auto space-y-8 py-8 flex-grow">
+        <h1 class="text-4xl font-extrabold text-center mb-8">My Investment Portfolio</h1>
+ 
+        <div class="card grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+            <div>
+                <h2 class="text-2xl font-bold mb-4">Portfolio Summary</h2>
+ 
+                <p class="text-lg mb-2">
+                    Total Current Value:
+                    <span class="font-semibold" th:text="${#numbers.formatCurrency(totalCurrentValue)}"></span>
+                </p>
+ 
+                <p class="text-lg">
+                    Total Profit/Loss:
+                    <span class="font-semibold"
+                          th:classappend="${totalProfitLoss >= 0 ? 'profit-text' : 'loss-text'}"
+                          th:text="${#numbers.formatCurrency(totalProfitLoss)}"></span>
+                </p>
+ 
+                <div class="mt-4 flex space-x-4">
+                    <a href="/clearSession" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+                        Clear Portfolio Data
+                    </a>
+                </div>
+            </div>
+            <div class="flex flex-col items-center justify-center space-y-6">
+                <img src="https://via.placeholder.com/150/f0f0f0/333333?text=Stock+Chart" alt="Stock Chart Icon" class="w-32 h-32 md:w-40 md:h-40 object-contain">
+                <canvas id="portfolioPieChart" class="w-full h-auto"></canvas>
+            </div>
+        </div>
+ 
+        <div class="card">
+            <h2 class="text-2xl font-bold mb-4">Investment Details</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full rounded-lg overflow-hidden">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="py-3 px-4 text-left text-sm font-medium uppercase tracking-wider">Asset</th>
+                            <th class="py-3 px-4 text-left text-sm font-medium uppercase tracking-wider">Buy Value</th>
+                            <th class="py-3 px-4 text-left text-sm font-medium uppercase tracking-wider">Current Value</th>
+                            <th class="py-3 px-4 text-left text-sm font-medium uppercase tracking-wider">Profit/Loss</th>
+                            <th class="py-3 px-4 text-left text-sm font-medium uppercase tracking-wider">Allocation</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y">
+                        <tr th:each="item : ${portfolioItems}">
+                            <td class="py-3 px-4 whitespace-nowrap" th:text="${item.name}"></td>
+                            <td class="py-3 px-4 whitespace-nowrap" th:text="${#numbers.formatCurrency(item.buyValue)}"></td>
+                            <td class="py-3 px-4 whitespace-nowrap" th:text="${#numbers.formatCurrency(item.currentValue)}"></td>
+ 
+                            <td class="py-3 px-4 whitespace-nowrap"
+                                th:classappend="${item.profitLoss >= 0 ? 'profit-text' : 'loss-text'}"
+                                th:text="${#numbers.formatCurrency(item.profitLoss)}"></td>
+ 
+                            <td class="py-3 px-4 whitespace-nowrap" th:text="${#numbers.formatDecimal(item.allocationPercentage, 0, 2) + '%'}"></td>
+ 
+                        </tr>
+                        <tr th:if="${#lists.isEmpty(portfolioItems)}">
+                            <td colspan="5" class="py-4 text-center text-gray-500">No investment data available. Please select a plan.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+ 
+        <div class="card">
+            <h2 class="text-2xl font-bold mb-4">Profit/Loss Performance</h2>
+            <canvas id="profitLossBarChart" class="w-full h-auto"></canvas>
+        </div>
+ 
+        <div class="card">
+            <h2 class="text-2xl font-bold mb-4">Rebalancing Ideas</h2>
+            <ul class="list-disc list-inside space-y-2">
+                <li th:each="idea : ${rebalancingIdeas}" th:text="${idea}"></li>
+                <li th:if="${#lists.isEmpty(rebalancingIdeas)}" class="text-gray-500">No rebalancing ideas at the moment.</li>
+            </ul>
+        </div>
+    </div>
+ 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script th:src="@{/js/dark-mode.js}"></script>
+    <script th:inline="javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            const portfolioItems = [[${portfolioItems}]];
+ 
+            // Function to get CSS variable value
+            function getCssVariable(name) {
+                return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+            }
+ 
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobilePlanningDropdown = document.getElementById('mobilePlanningDropdown');
+            const mobilePlanningDropdownMenu = document.getElementById('mobilePlanningDropdownMenu');
+            const mobilePlanningDropdownIcon = document.getElementById('mobilePlanningDropdownIcon');
+ 
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+ 
+            mobilePlanningDropdown.addEventListener('click', () => {
+                mobilePlanningDropdownMenu.classList.toggle('hidden');
+                mobilePlanningDropdownIcon.classList.toggle('rotate-180');
+            });
+ 
+ 
+            // --- Pie Chart Logic ---
+            const pieCtx = document.getElementById('portfolioPieChart').getContext('2d');
+            const pieLabels = portfolioItems.map(item => item.name);
+            const pieData = portfolioItems.map(item => item.currentValue);
+            const totalDataValue = pieData.reduce((sum, current) => sum + current, 0);
+ 
+            if (portfolioItems.length > 0 && totalDataValue > 0) {
+                new Chart(pieCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: pieLabels,
+                        datasets: [{
+                            data: pieData,
+                            backgroundColor: [
+                                getCssVariable('--chart-color-1'),
+                                getCssVariable('--chart-color-2'),
+                                getCssVariable('--chart-color-3'),
+                                getCssVariable('--chart-color-4'),
+                                getCssVariable('--chart-color-5'),
+                                getCssVariable('--chart-color-6')
+                            ],
+                            borderColor: [
+                                getCssVariable('--chart-border-color-1'),
+                                getCssVariable('--chart-border-color-2'),
+                                getCssVariable('--chart-border-color-3'),
+                                getCssVariable('--chart-border-color-4'),
+                                getCssVariable('--chart-border-color-5'),
+                                getCssVariable('--chart-border-color-6')
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                                labels: {
+                                    color: getCssVariable('--chart-tick-color') // Legend text color
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Current Portfolio Allocation',
+                                color: getCssVariable('--chart-title-color') // Chart title color
+                            }
+                        }
+                    }
+                });
+            } else {
+                pieCtx.font = "18px sans-serif"; // Using generic sans-serif
+                pieCtx.textAlign = "center";
+                pieCtx.fillStyle = getCssVariable('--chart-tick-color'); // Fallback text color
+                pieCtx.fillText("No portfolio data to display chart. Please select a plan.", pieCtx.canvas.width / 2, pieCtx.canvas.height / 2);
+            }
+ 
+            // --- Profit/Loss Bar Chart Logic ---
+            const barCtx = document.getElementById('profitLossBarChart').getContext('2d');
+            const barLabels = portfolioItems.map(item => item.name);
+            const profitLossData = portfolioItems.map(item => item.profitLoss);
+ 
+            const barColors = profitLossData.map(value => {
+                // Dynamically get colors from CSS variables
+                return value >= 0 ? getCssVariable('--profit-text-color-chart') : getCssVariable('--loss-text-color-chart');
+            });
+ 
+            if (portfolioItems.length > 0) {
+                new Chart(barCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: barLabels,
+                        datasets: [{
+                            label: 'Profit/Loss',
+                            data: profitLossData,
+                            backgroundColor: barColors,
+                            borderColor: barColors,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                display: false,
+                            },
+                            title: {
+                                display: true,
+                                text: 'Individual Asset Profit/Loss',
+                                color: getCssVariable('--chart-title-color')
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Amount (₹)',
+                                    color: getCssVariable('--chart-title-color')
+                                },
+                                ticks: {
+                                    color: getCssVariable('--chart-tick-color')
+                                },
+                                grid: {
+                                    color: getCssVariable('--chart-grid-color')
+                                }
+                            },
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Asset',
+                                    color: getCssVariable('--chart-title-color')
+                                },
+                                ticks: {
+                                    color: getCssVariable('--chart-tick-color')
+                                },
+                                grid: {
+                                    color: getCssVariable('--chart-grid-color')
+                                }
+                            }
+                        }
+                    }
+                });
+            } else {
+                barCtx.font = "18px sans-serif";
+                barCtx.textAlign = "center";
+                barCtx.fillStyle = getCssVariable('--chart-tick-color');
+                barCtx.fillText("No portfolio data to display profit/loss chart.", barCtx.canvas.width / 2, barCtx.canvas.height / 2);
+            }
+        });
+    </script>
+</body>
+</html>
+ 

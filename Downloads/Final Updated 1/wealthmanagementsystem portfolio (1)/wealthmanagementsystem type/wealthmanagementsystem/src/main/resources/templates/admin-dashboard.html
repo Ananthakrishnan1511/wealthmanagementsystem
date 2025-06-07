@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard - Wealthy</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/admin-dashboard-style.css}"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+ 
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm px-3" style="background-color: #003366;">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="#">
+            <img th:src="@{/images/Wealth Front.png}" alt="Wealthy Logo" style="height: 40px;">
+        </a>
+        <div class="collapse navbar-collapse justify-content-center">
+            <ul class="navbar-nav gap-3">
+                <li class="nav-item"><a class="nav-link fw-semibold" th:href="@{/admin/dashboard}">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link fw-semibold" th:href="@{/admin/users}">Users</a></li>
+                
+            </ul>
+        </div>
+        <div class="d-flex align-items-center">
+            <button id="darkModeToggle" class="btn btn-link text-white me-3">
+                <i class="fas fa-moon"></i>
+            </button>
+            <a class="btn btn-outline-light fw-semibold" th:href="@{/admin/logout}">Logout</a>
+        </div>
+    </div>
+</nav>
+ 
+<div class="container d-flex justify-content-center align-items-center flex-grow-1">
+    <div class="dashboard-container w-100 p-3 p-md-4">
+        <h3 class="text-center fw-bold mb-3" style="color: #5EEBFF !important;">Admin Dashboard</h3>
+        <p class="text-center mb-4 text-muted">Manage user approvals and settings.</p>
+      
+        <div class="table-responsive">
+            <div class="table-wrapper mt-4"> 
+                <table class="table"> <thead>
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Email Address</th>
+                            <th>Username</th>
+                            <th>DOB</th>
+                            <th>Age</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="user : ${draftUsers}">
+                            <td th:text="${user.fullName}"></td>
+                            <td th:text="${user.emailAddress}"></td>
+                            <td th:text="${user.userName}"></td>
+                            <td th:text="${user.dateOfBirth}"></td>
+                            <td th:text="${user.age}"></td>
+                            <td class="action-buttons">
+                                <form th:action="@{/admin/approve/{identity}(identity=${user.identity})}" method="post" class="d-inline-block me-2">
+                                    <button type="submit" class="btn btn-success btn-sm">Approve ✅</button>
+                                </form>
+                                <form th:action="@{/admin/reject/{identity}(identity=${user.identity})}" method="post" class="d-inline-block">
+                                    <button type="submit" class="btn btn-danger btn-sm">Reject ❌</button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/dark-mode.js}"></script> 
+</body>
+</html>

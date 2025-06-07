@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" data-theme="light">
+<head>
+    <title>Chosen Plans</title>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/choosenplan-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm px-3" style="background-color: #003366;">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="#">
+            <img th:src="@{/images/Wealth Front.png}" alt="Wealthy Logo" style="height: 40px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav gap-3">
+                <li class="nav-item"><a class="nav-link fw-semibold" th:href="@{/auth/main}">About</a></li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle fw-semibold" href="#" id="planningDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Planning
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="planningDropdown">
+                          <li><a class="dropdown-item" th:href="@{/auth/stocks}">📈 Stocks</a></li>
+                        <li><a class="dropdown-item" th:href="@{/auth/mutualfunds}">📊 Mutual Funds</a></li>
+                        <li><a class="dropdown-item" th:href="@{/auth/gold}">🏆 Gold</a></li>
+                        <li><a class="dropdown-item" th:href="@{/auth/summary}">📋 Chosen Plan</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link fw-semibold" href="#">Portfolio</a></li>
+                <li class="nav-item"><a class="nav-link fw-semibold" href="#">Report</a></li>
+            </ul>
+        </div>
+        <div class="d-flex align-items-center">
+            <button id="darkModeToggle" class="btn btn-link text-white me-3">
+                <i class="fas fa-moon"></i>
+            </button>
+            <a class="btn fw-semibold btn-outline-light" th:href="@{/login}">Login</a>
+        </div>
+    </div>
+</nav>
+<div class="container mt-4 flex-grow-1">
+    <h2 class="mb-4">Your Chosen Plans</h2>
+   <div class="container mt-3">
+    <div th:each="plan : ${plans}" class="plan-card mb-3 p-3 rounded shadow-sm">
+        <p><strong>Plan Type:</strong> <span th:text="${plan.planType}">Name</span></p>
+        <p><strong>Plan Name:</strong> <span th:text="${plan.planName}"></span></p>
+        <p><strong>Entry Price:</strong> ₹<span th:text="${plan.entryPrice}"></span></p>
+    </div>
+</div>
+   <div class="summary-box mt-4 p-3 rounded">
+    <h5>Total Amount Invested: ₹<span th:text="${totalInvestment}"></span></h5>
+</div>
+   <div class="mt-4 text-center">
+    <form th:action="@{/auth/confirm}" method="post">
+        <button type="submit" class="btn btn-success btn-lg">Confirm</button>
+    </form>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/dark-mode.js}"></script>
+</body>
+</html>

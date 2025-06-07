@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Profile - Wealthy</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/edit-profile-style.css}"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm px-3" style="background-color: #003366;">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="#">
+            <img th:src="@{/images/Wealth Front.png}" alt="Wealthy Logo" style="height: 40px;">
+        </a>
+        <div class="d-flex align-items-center">
+            <button id="darkModeToggle" class="btn btn-link text-white me-3">
+                <i class="fas fa-moon"></i>
+            </button>
+            <a class="btn btn-outline-light fw-semibold me-3" th:href="@{/auth/main}">Go to Home</a>
+            <a class="btn btn-outline-light fw-semibold" th:href="@{/auth/login/logout}">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container d-flex justify-content-center align-items-center flex-grow-1 py-4">
+    <div class="profile-container w-100">
+        <div class="card p-4">
+            <h3 class="text-center mb-4 fw-bold">Edit Profile</h3>
+            <form th:action="@{/update-profile}" method="post" th:object="${advisor}">
+                <input type="hidden" th:field="*{identity}"/>
+
+                <div class="mb-3">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-control" th:field="*{fullName}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-control" th:field="*{emailAddress}" readonly>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Date of Birth</label>
+                    <input type="email" class="form-control" th:field="*{dateOfBirth}" readonly>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-control" th:field="*{userName}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">New Password</label>
+                    <input type="password" class="form-control" th:field="*{passWord}">
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Update Profile</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/dark-mode.js}"></script> 
+</body>
+</html>

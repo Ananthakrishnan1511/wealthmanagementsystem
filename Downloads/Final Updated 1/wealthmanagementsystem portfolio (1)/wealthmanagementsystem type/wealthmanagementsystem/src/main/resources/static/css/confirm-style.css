@@ -1,0 +1,189 @@
+:root {
+    /* General Theme Colors */
+    --body-bg-from: #e0f7fa; /* light cyan */
+    --body-bg-to: #e8f5e9;   /* light green */
+    --text-color: #212529; /* Dark gray */
+    --heading-color: #003366; /* Dark blue for primary headings */
+
+    /* Card/Content Colors */
+    --card-bg: #ffffff;
+    --card-shadow: rgba(0, 0, 0, 0.15);
+
+    /* Icon/Success Colors */
+    --success-icon-color: #28a745; /* Bootstrap green */
+    --success-text-color: #343a40; /* Slightly lighter than main text */
+
+    /* Button Colors */
+    --btn-primary-bg: #003366; /* Your brand blue */
+    --btn-primary-border: #003366;
+    --btn-primary-hover-bg: #002244;
+    --btn-primary-hover-border: #002244;
+
+    --btn-outline-secondary-color: #6c757d;
+    --btn-outline-secondary-border: #6c757d;
+    --btn-outline-secondary-hover-bg: #6c757d;
+    --btn-outline-secondary-hover-color: #ffffff;
+}
+
+[data-theme='dark'] {
+    /* General Theme Colors */
+    --body-bg-from: #1a202c; /* Dark gray */
+    --body-bg-to: #2d3748;   /* Darker gray */
+    --text-color: #e9ecef; /* Light gray */
+    --heading-color: #5EEBFF; /* Brand-aligned light blue for headings */
+
+    /* Card/Content Colors */
+    --card-bg: #2d3748; /* Darker gray */
+    --card-shadow: rgba(0, 0, 0, 0.4);
+
+    /* Icon/Success Colors */
+    --success-icon-color: #34d399; /* Lighter green for dark mode */
+    --success-text-color: #cbd5e0; /* Off-white for dark mode text */
+
+    /* Button Colors */
+    --btn-primary-bg: #5EEBFF; /* Brand-aligned light blue */
+    --btn-primary-border: #5EEBFF;
+    --btn-primary-hover-bg: #3DDFFF;
+    --btn-primary-hover-border: #3DDFFF;
+
+    --btn-outline-secondary-color: #a0aec0;
+    --btn-outline-secondary-border: #a0aec0;
+    --btn-outline-secondary-hover-bg: #a0aec0;
+    --btn-outline-secondary-hover-color: #1a202c;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, var(--body-bg-from) 0%, var(--body-bg-to) 100%);
+    color: var(--text-color);
+    transition: background 0.5s ease, color 0.5s ease;
+    min-height: 100vh; /* Ensure full viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevent scrollbar if confetti goes out of bounds */
+}
+
+/* Dark Mode Toggle Position (adjust as needed) */
+#darkModeToggle {
+    color: var(--text-color); /* Themed text color */
+    z-index: 10; /* Ensure it's above other elements */
+    transition: color 0.3s ease;
+}
+#darkModeToggle:hover {
+    color: #ffd700 !important; /* Gold on hover */
+}
+[data-theme='dark'] #darkModeToggle {
+    color: var(--text-color);
+}
+
+
+.success-card {
+    max-width: 600px;
+    background-color: var(--card-bg);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 25px var(--card-shadow);
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
+    z-index: 1; /* Ensure card is above any potential background effects */
+}
+
+.success-icon {
+    font-size: 5rem; /* Larger icon */
+    color: var(--success-icon-color);
+    transition: color 0.5s ease;
+}
+
+h1 {
+    color: var(--heading-color);
+    transition: color 0.5s ease;
+}
+
+p.lead, p {
+    color: var(--success-text-color);
+    transition: color 0.5s ease;
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: var(--btn-primary-bg);
+    border-color: var(--btn-primary-border);
+    color: white; /* Always white text for primary button */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.btn-primary:hover {
+    background-color: var(--btn-primary-hover-bg);
+    border-color: var(--btn-primary-hover-border);
+    color: white;
+}
+
+.btn-outline-secondary {
+    color: var(--btn-outline-secondary-color);
+    border-color: var(--btn-outline-secondary-border);
+    transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+.btn-outline-secondary:hover {
+    background-color: var(--btn-outline-secondary-hover-bg);
+    color: var(--btn-outline-secondary-hover-color);
+    border-color: var(--btn-outline-secondary-hover-bg); /* Ensure border matches hover bg */
+}
+
+
+/* --- Animations --- */
+
+/* Main card fade in */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animated-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+}
+
+/* Icon bounce */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-30px); }
+    60% { transform: translateY(-15px); }
+}
+.animated-bounce {
+    animation: bounce 1.5s ease-out 0.5s forwards; /* Starts after card fades in */
+}
+
+/* Scale up for heading */
+@keyframes scaleUp {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+.animated-scale-up {
+    animation: scaleUp 0.8s ease-out 0.7s forwards; /* Delay after icon */
+}
+
+/* Text fade in with stagger */
+@keyframes fadeInText {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.animated-fade-in-text {
+    animation: fadeInText 1s ease-out 1s forwards;
+}
+.animated-fade-in-text-delay {
+    animation: fadeInText 1s ease-out 1.2s forwards;
+}
+.animated-fade-in-button {
+    animation: fadeInText 1s ease-out 1.4s forwards;
+}
+.animated-fade-in-button-delay {
+    animation: fadeInText 1s ease-out 1.6s forwards;
+}
+
+/* Ensure elements start hidden before animation */
+.animated-fade-in,
+.animated-bounce,
+.animated-scale-up,
+.animated-fade-in-text,
+.animated-fade-in-text-delay,
+.animated-fade-in-button,
+.animated-fade-in-button-delay {
+    opacity: 0;
+}

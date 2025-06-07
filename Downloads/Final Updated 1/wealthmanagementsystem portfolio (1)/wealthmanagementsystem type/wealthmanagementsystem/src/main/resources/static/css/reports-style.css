@@ -1,0 +1,186 @@
+:root {
+    --body-bg: #f8f9fa;
+    --general-text: #212529;
+    --navbar-dropdown-bg: #ffffff;
+    --navbar-dropdown-text: #212529;
+ 
+    --primary-btn-bg: #0d6efd;
+    --primary-btn-border: #0d6efd;
+    --primary-btn-hover-bg: #0a58ca;
+    --primary-btn-hover-border: #0a58ca;
+ 
+    --success-btn-bg: #198754;
+    --success-btn-border: #198754;
+    --success-btn-hover-bg: #157347;
+    --success-btn-hover-border: #157347;
+ 
+    --list-group-item-bg: #ffffff;
+    --list-group-item-border: rgba(0,0,0,.125);
+    --list-group-item-text: #212529;
+    --link-color: #0d6efd;
+    --alert-info-bg: #dbeafe;
+    --alert-info-text: #1e40af;
+    --alert-info-border: #93c5fd;
+ 
+    /* Logout Button Variables (Light Mode) */
+    --logout-btn-text: white;
+    --logout-btn-border: rgba(255, 255, 255, 0.5);
+    --logout-btn-hover-text: #003366; /* Dark blue from navbar */
+    --logout-btn-hover-bg: white;
+    --logout-btn-hover-border: white;
+}
+ 
+[data-theme='dark'] {
+    --body-bg: #212121;
+    --general-text: #e9ecef;
+    --navbar-dropdown-bg: #343a40;
+    --navbar-dropdown-text: #e9ecef;
+ 
+    --primary-btn-bg: #007bff; /* Slightly different primary for dark mode */
+    --primary-btn-border: #007bff;
+    --primary-btn-hover-bg: #0056b3;
+    --primary-btn-hover-border: #0056b3;
+ 
+    --success-btn-bg: #28a745; /* Slightly different success for dark mode */
+    --success-btn-border: #28a745;
+    --success-btn-hover-bg: #218838;
+    --success-btn-hover-border: #218838;
+ 
+    --list-group-item-bg: #343a40;
+    --list-group-item-border: rgba(255,255,255,.125);
+    --list-group-item-text: #e9ecef;
+    --link-color: #5EEBFF; /* Brand-aligned light blue */
+    --alert-info-bg: #1a202c;
+    --alert-info-text: #a0aec0;
+    --alert-info-border: #4a5568;
+ 
+    /* Logout Button Variables (Dark Mode) */
+    --logout-btn-text: white; /* Still white on dark navbar */
+    --logout-btn-border: rgba(255, 255, 255, 0.5);
+    --logout-btn-hover-text: #003366; /* Dark blue from navbar */
+    --logout-btn-hover-bg: white;
+    --logout-btn-hover-border: white;
+}
+ 
+body {
+    background-color: var(--body-bg);
+    color: var(--general-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Segoe UI', sans-serif;
+}
+ 
+/* Navbar styles - consistent with previous pages */
+.navbar {
+    background-color: #003366 !important;
+}
+ 
+.navbar .nav-link {
+    color: white !important; /* Ensures nav links are white on dark blue background */
+}
+ 
+.navbar-brand img {
+    filter: brightness(1.2); /* Make logo pop on dark nav */
+}
+ 
+#darkModeToggle {
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+ 
+#darkModeToggle:hover {
+    color: #ffd700 !important; /* Gold on hover */
+}
+ 
+.navbar .dropdown-menu {
+    background-color: var(--navbar-dropdown-bg);
+    border-color: rgba(0, 0, 0, 0.15); /* Default Bootstrap border */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+ 
+[data-theme='dark'] .navbar .dropdown-menu {
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
+}
+ 
+.navbar .dropdown-item {
+    color: var(--navbar-dropdown-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+ 
+.navbar .dropdown-item:hover {
+    background-color: rgba(0, 0, 0, 0.05); /* Light hover for light mode */
+}
+ 
+[data-theme='dark'] .navbar .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Darker hover for dark mode */
+}
+ 
+/* Custom styles for the logout button */
+.nav-logout-btn {
+    color: var(--logout-btn-text);
+    border-color: var(--logout-btn-border);
+    background-color: transparent; /* Ensure transparent background by default */
+    padding: 0.5rem 1rem; /* Adjust padding if needed */
+    border-radius: 0.375rem; /* Bootstrap's default for rounded corners */
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+ 
+.nav-logout-btn:hover {
+    color: var(--logout-btn-hover-text);
+    background-color: var(--logout-btn-hover-bg);
+    border-color: var(--logout-btn-hover-border);
+}
+ 
+ 
+/* Report page specific styles */
+h1, h3 {
+    color: var(--general-text);
+    transition: color 0.3s ease;
+}
+ 
+.btn-primary {
+    background-color: var(--primary-btn-bg);
+    border-color: var(--primary-btn-border);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+ 
+.btn-primary:hover {
+    background-color: var(--primary-btn-hover-bg);
+    border-color: var(--primary-btn-hover-border);
+}
+ 
+.btn-success {
+    background-color: var(--success-btn-bg);
+    border-color: var(--success-btn-border);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+ 
+.btn-success:hover {
+    background-color: var(--success-btn-hover-bg);
+    border-color: var(--success-btn-hover-border);
+}
+ 
+.list-group-item {
+    background-color: var(--list-group-item-bg);
+    border-color: var(--list-group-item-border);
+    color: var(--list-group-item-text);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+ 
+.list-group-item a {
+    color: var(--link-color); /* Ensures links within list items are themed */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+ 
+.list-group-item a:hover {
+    text-decoration: underline;
+}
+ 
+.alert-info {
+    background-color: var(--alert-info-bg);
+    color: var(--alert-info-text);
+    border-color: var(--alert-info-border);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+ 

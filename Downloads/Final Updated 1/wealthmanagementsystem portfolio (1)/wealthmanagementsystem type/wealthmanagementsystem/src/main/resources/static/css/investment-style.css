@@ -1,0 +1,161 @@
+:root {
+    --body-bg: #ffffff;
+    --general-text: #212529;
+    --hero-heading-color: #212529;
+    --hero-text-color: #6c757d;
+    --feature-item-color: #212529;
+    --btn-custom-bg: #4FBBC6;
+    --btn-custom-hover-bg: #3aa9b4;
+    --modal-content-bg: #ffffff;
+    --modal-text-color: #212529;
+    --modal-header-border-color: #e9ecef;
+    --form-label-color: #343a40;
+    --form-input-bg: #ffffff;
+    --form-input-border: #ced4da;
+    --form-input-text: #212529;
+    --btn-success-bg: #28a745;
+    --btn-success-border: #28a745;
+    --btn-success-hover-bg: #218838;
+    --btn-success-hover-border: #1e7e34;
+}
+
+[data-theme='dark'] {
+    --body-bg: #000000;
+    --general-text: #e9ecef;
+    --hero-heading-color: #e9ecef;
+    --hero-text-color: #adb5bd;
+    --feature-item-color: #e9ecef;
+    --btn-custom-bg: #5EEBFF;
+    --btn-custom-hover-bg: #3DDFFF;
+    --modal-content-bg: #343a40;
+    --modal-text-color: #e9ecef;
+    --modal-header-border-color: #495057;
+    --form-label-color: #ced4da;
+    --form-input-bg: #495057;
+    --form-input-border: #6c757d;
+    --form-input-text: #e9ecef;
+    --btn-success-bg: #218838;
+    --btn-success-border: #1e7e34;
+    --btn-success-hover-bg: #1e7e34;
+    --btn-success-hover-border: #1a742e;
+}
+
+body {
+    background-color: var(--body-bg);
+    color: var(--general-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    background-color: #003366 !important;
+}
+
+.navbar .nav-link,
+.navbar .btn {
+    color: white !important;
+}
+
+.navbar .btn-primary {
+    background-color: #5EEBFF;
+    border-color: #5EEBFF;
+    color: #003366 !important;
+    font-weight: 600;
+}
+
+.navbar .btn-primary:hover {
+    background-color: #3DDFFF;
+    border-color: #3DDFFF;
+}
+
+#darkModeToggle {
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+#darkModeToggle:hover {
+    color: #ffd700 !important;
+}
+
+.hero-section {
+    padding: 60px 0;
+}
+
+.hero-text h1 {
+    font-weight: bold;
+    font-size: 2.5rem;
+    color: var(--hero-heading-color);
+    transition: color 0.3s ease;
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    color: var(--hero-text-color);
+    transition: color 0.3s ease;
+}
+
+.feature-list {
+    margin-top: 30px;
+}
+
+.feature-item {
+    margin-bottom: 15px;
+    color: var(--feature-item-color);
+    transition: color 0.3s ease;
+}
+
+.btn-custom {
+    background-color: var(--btn-custom-bg);
+    border: none;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.btn-custom:hover {
+    background-color: var(--btn-custom-hover-bg);
+}
+
+.modal-content {
+    background-color: var(--modal-content-bg);
+    color: var(--modal-text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--modal-header-border-color);
+}
+
+.modal-title {
+    color: var(--modal-text-color);
+}
+
+.modal-body .form-label {
+    color: var(--form-label-color);
+}
+
+.modal-body .form-select {
+    background-color: var(--form-input-bg);
+    border-color: var(--form-input-border);
+    color: var(--form-input-text);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.modal-body .form-select:focus {
+    background-color: var(--form-input-bg);
+    border-color: var(--btn-custom-bg);
+    box-shadow: 0 0 0 0.25rem rgba(var(--btn-custom-bg, 79, 187, 198), .25);
+    color: var(--form-input-text);
+}
+
+.modal-body .btn-success {
+    background-color: var(--btn-success-bg);
+    border-color: var(--btn-success-border);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.modal-body .btn-success:hover {
+    background-color: var(--btn-success-hover-bg);
+    border-color: var(--btn-success-hover-border);
+}

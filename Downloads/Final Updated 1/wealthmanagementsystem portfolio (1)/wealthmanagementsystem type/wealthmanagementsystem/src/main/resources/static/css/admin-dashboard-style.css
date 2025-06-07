@@ -1,0 +1,233 @@
+/* Custom CSS for Admin Dashboard */
+
+:root { /* BRIGHT MODE */
+    --body-bg: #ffffff; /* Body background: White */
+    
+    --table-wrapper-bg: #000000; /* Table wrapper background: Black */
+    --table-wrapper-border: var(--light-primary); /* Table wrapper border: Brand primary color */
+    --table-text: #f0f0f0; /* Text on table: Light grey for contrast */
+
+    --table-row-bg: #000000; /* Table row background: Black */
+    --table-row-hover: #333333; /* Table row hover: Dark grey */
+    --table-line-color: #555555; /* Horizontal line color inside table */
+
+    /* General elements - adjust as needed for new contrast */
+    --light-text: #212529; /* Default text color for elements not on the table */
+    --light-card-bg: #ffffff; /* General card background (if any, not the table wrapper) */
+    --light-border: #dee2e6; /* General border color */
+    --light-primary: #5EEBFF; /* Brand primary color */
+    --bs-primary: #5EEBFF;
+    --light-hover-link: #3DDFFF;
+    --light-btn-success-bg: #28a745;
+    --light-btn-success-border: #28a45;
+    --light-btn-danger-bg: #dc3545;
+    --light-btn-danger-border: #dc3545;
+}
+
+[data-theme='dark'] { /* DARK MODE */
+    --body-bg: #000000; /* Body background: Black */
+
+    --table-wrapper-bg: #f0f0f0; /* Table wrapper background: Light grey */
+    --table-wrapper-border: #000000; /* Table wrapper border: Black */
+    --table-text: #212529; /* Text on table: Dark grey for contrast */
+
+    --table-row-bg: #f0f0f0; /* Table row background: Light grey */
+    --table-row-hover: #d0d0d0; /* Table row hover: Darker light grey */
+    --table-line-color: #a0a0a0; /* Horizontal line color inside table */
+
+    /* General elements - adjust as needed for new contrast */
+    --light-text: #e9ecef;
+    --light-card-bg: #343a40;
+    --light-border: #495057;
+    --light-primary: #5EEBFF;
+    --bs-primary: #5EEBFF;
+    --light-hover-link: #3DDFFF;
+    --light-btn-success-bg: #218838;
+    --light-btn-success-border: #1e7e34;
+    --light-btn-danger-bg: #c82333;
+    --light-btn-danger-border: #bd2130;
+}
+
+body {
+    background-color: var(--body-bg); /* Use theme variable for solid background */
+    color: var(--light-text); /* Use general text color for body level text */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+}
+
+.navbar {
+    background-color: #003366 !important; /* Navbar remains consistent color */
+}
+
+.navbar .nav-link,
+.navbar .btn {
+    color: rgba(255, 255, 255, 0.8) !important;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .btn:hover {
+    color: rgba(255, 255, 255, 1) !important;
+}
+
+.navbar-brand img {
+    filter: brightness(1.2);
+}
+
+#darkModeToggle {
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+#darkModeToggle:hover {
+    color: #ffd700 !important;
+}
+
+/* Table Wrapper now holds the main table background and border */
+.table-wrapper {
+    max-width: 80;
+    margin: 0 auto; /* CENTERED: Adds equal margin to left/right */
+    background-color: var(--table-wrapper-bg); /* Table wrapper background */
+    border: 1px solid var(--table-wrapper-border); /* BORDER THICKNESS: Set to 1px (thinnest visible) */
+    border-radius: 0.75rem;
+    overflow: hidden;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+[data-theme='dark'] .table-wrapper {
+    background-color: var(--table-wrapper-bg);
+    border: 1px solid var(--table-wrapper-border);
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.5);
+}
+
+/* Table Styling */
+.table {
+    width: 100%;
+    margin-bottom: 0;
+    background-color: transparent; /* Let wrapper define main background */
+    color: var(--table-text); /* Table text color adapts to table background */
+    border-collapse: collapse;
+}
+
+.table thead {
+    background-color: var(--table-row-bg); /* Header background */
+    color: var(--table-text); /* Header text color */
+}
+
+.table th {
+    border-bottom: 1px solid var(--table-line-color); /* Horizontal line below header */
+    border-top: none;
+    border-left: none; /* Remove vertical lines */
+    border-right: none;
+    padding: 0.75rem 1rem;
+}
+
+.table tbody tr {
+    background-color: var(--table-row-bg); /* Row background */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    border-bottom: 1px solid var(--table-line-color); /* Horizontal line between rows */
+}
+
+.table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.table tbody tr:hover {
+    background-color: var(--table-row-hover); /* Hover background */
+    transform: translateY(-2px);
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.08);
+}
+
+[data-theme='dark'] .table tbody tr:hover {
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+}
+
+.table td {
+    border: none; /* Remove all cell borders */
+    vertical-align: middle;
+    padding: 0.75rem 1rem;
+}
+
+/* General button styles for actions within table (if any) */
+.table .btn-success {
+    background-color: var(--light-btn-success-bg);
+    border-color: var(--light-btn-success-border);
+    color: white;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.table .btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+    opacity: 0.9;
+}
+
+.table .btn-danger {
+    background-color: var(--light-btn-danger-bg);
+    border-color: var(--light-btn-danger-border);
+    color: white;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.table .btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+    opacity: 0.9;
+}
+
+/* General Bootstrap Overrides - applied to elements outside the table */
+.form-label {
+    color: var(--light-text);
+    font-weight: 600;
+}
+/* Title and Paragraph styling based on body text color */
+.container h3, .container p {
+    color: var(--light-text) !important; /* Force adaptation to body text color */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 767.98px) {
+    .table-wrapper {
+        padding: 1rem;
+        margin: 1rem; /* Adjust margin for mobile to keep spacing */
+    }
+    .table thead {
+        display: none;
+    }
+    .table tbody tr {
+        display: block;
+        margin-bottom: 0.625rem;
+        border: 1px solid var(--table-line-color);
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+    }
+    .table tbody td {
+        display: block;
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        border: none;
+    }
+    .table tbody td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0.75rem;
+        width: calc(50% - 1.5rem);
+        padding-right: 0.5rem;
+        text-align: left;
+        font-weight: bold;
+        color: var(--light-primary);
+    }
+    .table tbody tr:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    .action-buttons {
+        text-align: left !important;
+        padding-left: 0.75rem !important;
+    }
+}
