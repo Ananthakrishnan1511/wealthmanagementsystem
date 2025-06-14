@@ -1,0 +1,253 @@
+:root {
+    --light-bg: #f8f9fa;
+    --light-text: #212529;
+    --light-card-bg: #ffffff;
+    --light-border: #dee2e6;
+    --light-primary: #5EEBFF;
+    --bs-primary: #5EEBFF;
+    --light-hover-link: #3DDFFF;
+    --light-admin-border: #adb5bd;
+}
+
+[data-theme='dark'] {
+    --light-bg: #212529;
+    --light-text: #e9ecef;
+    --light-card-bg: #343a40;
+    --light-border: #495057;
+    --light-primary: #5EEBFF;
+    --bs-primary: #5EEBFF;
+    --light-hover-link: #3DDFFF;
+    --light-admin-border: #6c757d;
+}
+
+body {
+    background-image: url('/images/admin-login-bg.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: var(--light-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+    transition: background-color 0.3s ease;
+}
+
+[data-theme='dark'] body::before {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+
+.navbar {
+    background-color: #003366 !important;
+}
+
+.navbar .nav-link,
+.navbar .btn {
+    color: rgba(255, 255, 255, 0.8) !important;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .btn:hover {
+    color: rgba(255, 255, 255, 1) !important;
+}
+
+.navbar-brand img {
+    filter: brightness(1.2);
+}
+
+.login-container {
+    max-width: 400px;
+    margin: auto;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: background-color 0.3s ease, border 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+[data-theme='dark'] .card {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4) !important;
+}
+
+@media (min-width: 768px) {
+    .p-md-5 {
+        padding: 2rem !important;
+    }
+}
+
+.card-title, .h3:not(.text-primary) {
+    color: var(--light-text) !important;
+}
+h3.text-primary {
+    color: var(--light-primary) !important;
+}
+
+.form-label {
+    color: var(--light-text);
+    font-weight: 600;
+}
+
+.form-control {
+    background-color: var(--light-bg);
+    color: var(--light-text);
+    border-color: var(--light-border);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+    background-color: var(--light-bg);
+    color: var(--light-text);
+    border-color: var(--light-primary);
+    box-shadow: 0 0 0 0.25rem rgba(94, 235, 255, 0.25);
+}
+
+[data-theme='dark'] .form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(94, 235, 255, 0.25);
+}
+
+.btn-primary {
+    background-color: var(--light-primary);
+    border-color: var(--light-primary);
+    color: #003366;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: var(--light-hover-link);
+    border-color: var(--light-hover-link);
+    transform: translateY(-2px);
+    color: #002244;
+    animation: none;
+}
+
+[data-theme='dark'] .btn-primary {
+    background-color: var(--light-primary);
+    border-color: var(--light-primary);
+    color: #003366;
+}
+
+[data-theme='dark'] .btn-primary:hover {
+    background-color: var(--light-hover-link);
+    border-color: var(--light-hover-link);
+    color: #002244;
+}
+
+.custom-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 0.5rem;
+}
+
+a {
+    color: var(--light-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--light-hover-link);
+    text-decoration: underline;
+}
+
+.admin-login-link {
+    font-weight: 500;
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--light-admin-border);
+    border-radius: 0.3rem;
+    transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.admin-login-link:hover {
+    border-color: var(--light-primary);
+    color: var(--light-primary);
+    text-decoration: none;
+}
+
+.register-link {
+    font-weight: 500;
+}
+
+.register-link:hover {
+    color: var(--light-hover-link);
+}
+
+#darkModeToggle {
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+#darkModeToggle:hover {
+    color: #ffd700 !important;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+}
+
+[data-theme='dark'] .alert-danger {
+    background-color: #721c24;
+    color: #f8d7da;
+    border-color: #5d0f17;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.01);
+        box-shadow: 0 0 10px rgba(94, 235, 255, 0.4);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 767.98px) {
+    .login-container {
+        padding: 10px;
+    }
+    .card-body {
+        padding: 1.5rem !important;
+    }
+    .custom-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+    }
+    .form-control-lg {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .login-container {
+        max-width: 380px;
+    }
+}

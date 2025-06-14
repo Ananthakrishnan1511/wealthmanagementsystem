@@ -1,0 +1,114 @@
+/* Custom CSS for User Profile Page */
+
+:root { /* BRIGHT MODE */
+    --body-bg: #ffffff; /* Body background: Solid White */
+    
+    --general-text: #212529; /* General text color for page and card content */
+    --card-bg: #ffffff; /* Card background: White */
+    --card-border: #dee2e6; /* Card border: Light grey */
+    
+    --light-primary-btn-bg: #0d6efd; /* Bootstrap primary button default */
+    --light-primary-btn-border: #0d6efd;
+    --light-primary-btn-hover-bg: #0b5ed7;
+    --light-primary-btn-hover-border: #0a58ca;
+}
+
+[data-theme='dark'] { /* DARK MODE */
+    --body-bg: #000000; /* Body background: Solid Black */
+
+    --general-text: #e9ecef; /* General text color for page and card content */
+    --card-bg: #343a40; /* Card background: Dark grey */
+    --card-border: #495057; /* Card border: Darker grey */
+
+    --light-primary-btn-bg: #5EEBFF; /* Primary button in dark mode (your brand color) */
+    --light-primary-btn-border: #5EEBFF;
+    --light-primary-btn-hover-bg: #3DDFFF;
+    --light-primary-btn-hover-border: #3DDFFF;
+}
+
+body {
+    background-color: var(--body-bg); /* Use theme variable for solid background */
+    /* Removed background-image, background-size, background-position, background-repeat, background-attachment */
+    color: var(--general-text); /* Use general text color for body level text and inherited by card */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+}
+
+/* Removed body::before as there is no background image to overlay anymore */
+
+/* Navbar specific styling */
+.navbar {
+    background-color: #003366 !important; /* Fixed dark blue color */
+}
+
+.navbar .btn-outline-light {
+    color: rgba(255, 255, 255, 0.8) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.navbar .btn-outline-light:hover {
+    color: rgba(255, 255, 255, 1) !important;
+    border-color: rgba(255, 255, 255, 1) !important;
+}
+
+/* Dark Mode Toggle Button */
+#darkModeToggle {
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+#darkModeToggle:hover {
+    color: #ffd700 !important; /* Gold color on hover for moon icon */
+}
+
+/* Profile Card Wrapper Styling */
+.profile-card-wrapper {
+    max-width: 500px; /* Limit width for better appearance */
+    margin: 0 auto; /* Center the wrapper */
+    border-radius: 0.75rem; /* Rounded corners for the entire card section */
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.25); /* Shadow for the wrapper */
+    overflow: hidden; /* Ensures contents respect border-radius */
+    transition: box-shadow 0.3s ease;
+}
+
+[data-theme='dark'] .profile-card-wrapper {
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.5); /* Darker shadow in dark mode */
+}
+
+.profile-card-wrapper .card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--general-text); /* Text color inside the card */
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    border-radius: 0; /* Remove card's own border-radius, let wrapper handle it */
+    box-shadow: none; /* Remove card's own shadow, let wrapper handle it */
+}
+
+.profile-card-wrapper .card h3,
+.profile-card-wrapper .card p {
+    color: var(--general-text) !important; /* Ensure heading and paragraph color adapts */
+}
+
+/* Primary Button Styling */
+.profile-card-wrapper .card .btn-primary {
+    background-color: var(--light-primary-btn-bg);
+    border-color: var(--light-primary-btn-border);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.profile-card-wrapper .card .btn-primary:hover {
+    background-color: var(--light-primary-btn-hover-bg);
+    border-color: var(--light-primary-btn-hover-border);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767.98px) {
+    .profile-card-wrapper {
+        margin: 0 1rem; /* Add horizontal margin on smaller screens */
+    }
+}

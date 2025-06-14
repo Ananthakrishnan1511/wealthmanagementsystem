@@ -1,0 +1,161 @@
+:root {
+    --body-bg: #f8f9fa;
+    --general-text: #212529;
+    --navbar-dropdown-bg: #ffffff;
+    --navbar-dropdown-text: #212529;
+    --signup-card-bg: #ffffff;
+    --signup-card-shadow: rgba(0, 0, 0, 0.05);
+    --form-label-color: #343a40;
+    --form-input-bg: #ffffff;
+    --form-input-text: #212529;
+    --form-input-border: #ced4da;
+    --form-link-color: #0d6efd;
+    --btn-signup-bg: #4FBBC6;
+    --btn-signup-hover-bg: #3aa9b4;
+    --alert-danger-bg: #f8d7da;
+    --alert-danger-text: #842029;
+    --alert-danger-border: #f5c2c7;
+}
+
+[data-theme='dark'] {
+    --body-bg: #212121;
+    --general-text: #e9ecef;
+    --navbar-dropdown-bg: #343a40;
+    --navbar-dropdown-text: #e9ecef;
+    --signup-card-bg: #343a40;
+    --signup-card-shadow: rgba(0, 0, 0, 0.4);
+    --form-label-color: #e9ecef;
+    --form-input-bg: #2d2d2d;
+    --form-input-text: #e9ecef;
+    --form-input-border: #6c757d;
+    --form-link-color: #5EEBFF; /* Brand-aligned light blue */
+    --btn-signup-bg: #5EEBFF;
+    --btn-signup-hover-bg: #3DDFFF;
+    --alert-danger-bg: #4f2127;
+    --alert-danger-text: #ea868f;
+    --alert-danger-border: #8d363d;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--body-bg);
+    color: var(--general-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navbar styles - consistent with previous pages */
+.navbar {
+    background-color: #003366 !important;
+}
+
+.navbar .nav-link,
+.navbar .btn {
+    color: white !important;
+}
+
+.navbar .btn-outline-light {
+    color: rgba(255, 255, 255, 0.8) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.navbar .btn-outline-light:hover {
+    color: rgba(255, 255, 255, 1) !important;
+    border-color: rgba(255, 255, 255, 1) !important;
+}
+
+#darkModeToggle {
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+#darkModeToggle:hover {
+    color: #ffd700 !important; /* Gold on hover */
+}
+
+/* Signup specific styles */
+.signup-container {
+    max-width: 500px;
+    margin-top: 80px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    border: none;
+    background-color: var(--signup-card-bg);
+    box-shadow: 0 0 20px var(--signup-card-shadow);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card h3 {
+    color: var(--general-text);
+    transition: color 0.3s ease;
+}
+
+.form-label {
+    color: var(--form-label-color);
+    transition: color 0.3s ease;
+}
+
+.form-control {
+    background-color: var(--form-input-bg);
+    color: var(--form-input-text);
+    border: 1px solid var(--form-input-border);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.form-control:focus {
+    background-color: var(--form-input-bg); /* Keep consistent on focus */
+    color: var(--form-input-text);
+    border-color: var(--btn-signup-bg); /* Highlight with brand color on focus */
+    box-shadow: 0 0 0 0.25rem rgba(var(--btn-signup-bg-rgb), 0.25); /* Need to define RGB for dynamic alpha */
+    /* Fallback for non-rgb custom prop: */
+    box-shadow: 0 0 0 0.25rem rgba(79, 187, 198, 0.25); /* Default light blue shadow */
+    [data-theme='dark'] & {
+        box-shadow: 0 0 0 0.25rem rgba(94, 235, 255, 0.25); /* Dark mode brand blue shadow */
+    }
+}
+
+
+.btn-custom {
+    background-color: var(--btn-signup-bg);
+    border: none;
+    color: white; /* Ensure text color is white on this button */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-custom:hover {
+    background-color: var(--btn-signup-hover-bg);
+    color: white;
+}
+
+.signup-link {
+    color: var(--form-link-color);
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+.signup-link:hover {
+    text-decoration: underline;
+}
+
+.alert.alert-danger {
+    background-color: var(--alert-danger-bg);
+    color: var(--alert-danger-text);
+    border-color: var(--alert-danger-border);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

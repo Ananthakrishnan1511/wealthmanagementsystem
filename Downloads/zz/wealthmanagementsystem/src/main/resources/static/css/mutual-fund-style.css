@@ -1,0 +1,245 @@
+:root {
+    --body-bg: #ffffff;
+    --general-text: #212529;
+    --navbar-dropdown-bg: #ffffff;
+    --navbar-dropdown-text: #212529;
+    --hero-heading-color1: #003366;
+    --hero-heading-color2: #004080;
+    --hero-text-color: #343a40;
+    --btn-orange-bg: #ff6600;
+    --btn-orange-hover-bg: #e65c00;
+    --calculator-card-bg: #fefefe;
+    --calculator-card-shadow: rgba(0, 0, 0, 0.1);
+    --slider-label-color: #343a40;
+    --result-box-bg: #f1f5f9;
+    --result-box-text: #212529;
+    --form-range-track-bg: #e0e0e0;
+    --form-range-thumb-bg: #007bff;
+    --form-range-thumb-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+    --btn-custom-bg: #003366; /* Matching brand blue */
+    --btn-custom-color: #ffffff;
+    --btn-custom-hover-bg: #002244;
+    --alert-success-bg: #d1e7dd;
+    --alert-success-text: #0f5132;
+    --alert-success-border: #badbcc;
+    --alert-danger-bg: #f8d7da;
+    --alert-danger-text: #842029;
+    --alert-danger-border: #f5c2c7;
+}
+
+[data-theme='dark'] {
+    --body-bg: #1a1a1a;
+    --general-text: #e9ecef;
+    --navbar-dropdown-bg: #343a40;
+    --navbar-dropdown-text: #e9ecef;
+    --hero-heading-color1: #5EEBFF; /* Light blue from brand */
+    --hero-heading-color2: #9DDFFF;
+    --hero-text-color: #adb5bd;
+    --btn-orange-bg: #ff8c00;
+    --btn-orange-hover-bg: #cc7000;
+    --calculator-card-bg: #343a40;
+    --calculator-card-shadow: rgba(0, 0, 0, 0.4);
+    --slider-label-color: #e9ecef;
+    --result-box-bg: #495057;
+    --result-box-text: #e9ecef;
+    --form-range-track-bg: #6c757d;
+    --form-range-thumb-bg: #5EEBFF;
+    --form-range-thumb-shadow: 0 0 0 0.25rem rgba(94, 235, 255, 0.4);
+    --btn-custom-bg: #5EEBFF;
+    --btn-custom-color: #000000;
+    --btn-custom-hover-bg: #3DDFFF;
+    --alert-success-bg: #1f3d2a;
+    --alert-success-text: #c3e6cb;
+    --alert-success-border: #2c5a3b;
+    --alert-danger-bg: #4f2127;
+    --alert-danger-text: #ea868f;
+    --alert-danger-border: #8d363d;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--body-bg);
+    color: var(--general-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar {
+    background-color: #003366 !important; /* Keep fixed brand color */
+}
+
+.navbar .nav-link,
+.navbar .btn {
+    color: white !important;
+}
+
+.navbar .btn-outline-light {
+    color: rgba(255, 255, 255, 0.8) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.navbar .btn-outline-light:hover {
+    color: rgba(255, 255, 255, 1) !important;
+    border-color: rgba(255, 255, 255, 1) !important;
+}
+
+#darkModeToggle {
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+#darkModeToggle:hover {
+    color: #ffd700 !important; /* Gold on hover */
+}
+
+.navbar .dropdown-menu {
+    background-color: var(--navbar-dropdown-bg);
+    border-color: var(--navbar-dropdown-bg); /* Use same as background for clean look */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.navbar .dropdown-item {
+    color: var(--navbar-dropdown-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar .dropdown-item:hover {
+    background-color: rgba(var(--navbar-dropdown-text), 0.1); /* Subtle hover effect */
+    color: var(--navbar-dropdown-text);
+}
+
+
+.hero-section {
+    padding: 60px 30px;
+}
+
+.hero-left h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--hero-heading-color1);
+    transition: color 0.3s ease;
+}
+
+.hero-left h2 {
+    font-size: 1.8rem;
+    color: var(--hero-heading-color2);
+    transition: color 0.3s ease;
+}
+  
+.hero-left p {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: var(--hero-text-color);
+    transition: color 0.3s ease;
+}
+
+.btn-orange {
+    background-color: var(--btn-orange-bg);
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-orange:hover {
+    background-color: var(--btn-orange-hover-bg);
+}
+
+.calculator-card {
+    background-color: var(--calculator-card-bg);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 16px var(--calculator-card-shadow);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.calculator-card h4 {
+    color: var(--general-text);
+}
+
+.slider-label {
+    font-weight: 500;
+    margin-top: 15px;
+    color: var(--slider-label-color);
+    transition: color 0.3s ease;
+}
+
+.form-range {
+    height: 1.5rem; /* Adjust height for better styling */
+}
+
+/* Customizing Bootstrap's range slider for theme */
+.form-range::-webkit-slider-thumb {
+    background-color: var(--form-range-thumb-bg);
+    box-shadow: var(--form-range-thumb-shadow);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.form-range::-moz-range-thumb {
+    background-color: var(--form-range-thumb-bg);
+    box-shadow: var(--form-range-thumb-shadow);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.form-range::-ms-thumb {
+    background-color: var(--form-range-thumb-bg);
+    box-shadow: var(--form-range-thumb-shadow);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-range::-webkit-slider-runnable-track {
+    background: var(--form-range-track-bg);
+    border-radius: 0.5rem;
+    transition: background 0.3s ease;
+}
+.form-range::-moz-range-track {
+    background: var(--form-range-track-bg);
+    border-radius: 0.5rem;
+    transition: background 0.3s ease;
+}
+.form-range::-ms-track {
+    background: var(--form-range-track-bg);
+    border-radius: 0.5rem;
+    transition: background 0.3s ease;
+}
+
+.result-box {
+    background-color: var(--result-box-bg);
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    color: var(--result-box-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.result-box strong {
+    color: var(--general-text); /* Ensure strong text is visible */
+}
+
+.btn-custom {
+    background-color: var(--btn-custom-bg);
+    color: var(--btn-custom-color);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-custom:hover {
+    background-color: var(--btn-custom-hover-bg);
+    color: var(--btn-custom-color); /* Maintain text color on hover */
+}
+
+.alert.alert-danger {
+    background-color: var(--alert-danger-bg);
+    color: var(--alert-danger-text);
+    border-color: var(--alert-danger-border);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.alert.alert-success {
+    background-color: var(--alert-success-bg);
+    color: var(--alert-success-text);
+    border-color: var(--alert-success-border);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

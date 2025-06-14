@@ -1,0 +1,505 @@
+/* Custom CSS for Wealthy UI */
+
+:root {
+    --light-bg: #f8f9fa;
+    --light-text: #212529;
+    --light-card-bg: #ffffff; /* This variable won't be used for card background for glass effect */
+    --light-border: #dee2e6; /* This variable won't be used for card border for glass effect */
+    --light-primary: #5EEBFF; /* Changed to #5EEBFF */
+    --bs-primary: #5EEBFF;   /* ADDED: Set Bootstrap's primary color variable */
+    --light-hover-link: #3DDFFF; /* A slightly darker shade for hover */
+    --light-admin-border: #adb5bd;
+}
+
+[data-theme='dark'] {
+    --light-bg: #212529;
+    --light-text: #e9ecef;
+    --light-card-bg: #343a40; /* This variable won't be used for card background for glass effect */
+    --light-border: #495057; /* This variable won't be used for card border for glass effect */
+    --light-primary: #5EEBFF; /* Changed to #5EEBFF */
+    --bs-primary: #5EEBFF;   /* ADDED: Set Bootstrap's primary color variable for dark mode */
+    --light-hover-link: #3DDFFF; /* A slightly darker shade for hover */
+    --light-admin-border: #6c757d;
+}
+
+body {
+    /* REMOVE background-color: var(--light-bg); if you want the image to always be visible,
+       or keep it as a fallback if the image doesn't load.
+       For a glass effect, you generally want the image to show. */
+    background-image: url('../images/login.jpg'); /* YOUR IMAGE HERE */
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-position: center/* Custom CSS for Wealthy UI */
+
+:root {
+    --light-bg: #f8f9fa;
+    --light-text: #212529;
+    --light-card-bg: #ffffff; /* This variable won't be used for card background for glass effect */
+    --light-border: #dee2e6; /* This variable won't be used for card border for glass effect */
+    --light-primary: #5EEBFF; /* Changed to #5EEBFF */
+    --bs-primary: #5EEBFF;   /* ADDED: Set Bootstrap's primary color variable */
+    --light-hover-link: #3DDFFF; /* A slightly darker shade for hover */
+    --light-admin-border: #adb5bd;
+}
+
+[data-theme='dark'] {
+    --light-bg: #212529;
+    --light-text: #e9ecef;
+    --light-card-bg: #343a40; /* This variable won't be used for card background for glass effect */
+    --light-border: #495057; /* This variable won't be used for card border for glass effect */
+    --light-primary: #5EEBFF; /* Changed to #5EEBFF */
+    --bs-primary: #5EEBFF;   /* ADDED: Set Bootstrap's primary color variable for dark mode */
+    --light-hover-link: #3DDFFF; /* A slightly darker shade for hover */
+    --light-admin-border: #6c757d;
+}
+
+body {
+    background-image: url('/images/login.jpg'); /* YOUR IMAGE HERE */
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-position: center center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-attachment: fixed; /* Keeps the background fixed while scrolling */
+
+    color: var(--light-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh; /* Ensures body takes full viewport height */
+    display: flex;
+    flex-direction: column;
+
+    /* Required for the pseudo-element overlay */
+    position: relative;
+    z-index: 1; /* Ensures content is above the pseudo-element */
+}
+
+/* Recommended: Add a semi-transparent overlay for better text readability */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* A medium-dark transparent overlay */
+    z-index: -1; /* Places the overlay behind the body content */
+    transition: background-color 0.3s ease;
+}
+
+/* Adjust overlay darkness for dark mode */
+[data-theme='dark'] body::before {
+    background-color: rgba(0, 0, 0, 0.7); /* Slightly darker overlay in dark mode */
+}
+
+
+.navbar {
+    background-color: #003366 !important; /* Wealthy's primary blue */
+}
+
+.navbar .nav-link,
+.navbar .btn {
+    color: rgba(255, 255, 255, 0.8) !important;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .btn:hover {
+    color: rgba(255, 255, 255, 1) !important;
+}
+
+.navbar-brand img {
+    filter: brightness(1.2); /* Slightly brighten logo */
+}
+
+/* Login Container & Card */
+.login-container {
+    max-width: 450px; /* Adjust as needed */
+}
+
+.card {
+    /* Glass Effect properties */
+    background-color: rgba(255, 255, 255, 0.1); /* Translucent white for light mode glass */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle translucent border */
+    backdrop-filter: blur(10px); /* The core blur effect for glass */
+    -webkit-backdrop-filter: blur(10px); /* For Safari compatibility */
+
+    /* Existing properties, updated for transition */
+    transition: background-color 0.3s ease, border 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important; /* Keep original shadow */
+}
+
+[data-theme='dark'] .card {
+    /* Glass Effect properties for dark mode */
+    background-color: rgba(0, 0, 0, 0.2); /* Translucent black for dark mode glass */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle translucent border for dark mode */
+    /* backdrop-filter is already applied above and is theme-agnostic */
+
+    /* Existing shadow for dark mode */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Specific override for p-md-5 to change padding from 3rem to 2rem */
+@media (min-width: 768px) {
+    .p-md-5 {
+        padding: 2rem !important;
+    }
+}
+
+/* REMOVED 'h3' from this selector to allow 'text-primary' to work on H3 elements */
+.card-title, .h3 {
+    color: var(--light-text) !important; /* Ensure specific elements reflect theme */
+}
+
+/* New class for brighter text */
+.signup-text-wrapper {
+    color: rgba(255, 255, 255, 0.8) !important; /* Bright, semi-transparent white */
+    transition: color 0.3s ease;
+}
+
+[data-theme='dark'] .signup-text-wrapper {
+    color: rgba(255, 255, 255, 0.95) !important; /* Slightly brighter in dark mode */
+}
+
+
+.form-label {
+    color: var(--light-text);
+}
+
+.form-control {
+    background-color: var(--light-bg);
+    color: var(--light-text);
+    border-color: var(--light-border);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.form-control:focus {
+    background-color: var(--light-bg);
+    color: var(--light-text);
+    border-color: var(--light-primary);
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25); /* Bootstrap focus color */
+}
+
+[data-theme='dark'] .form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(102, 179, 255, 0.25);
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #5EEBFF; /* Changed to #5EEBFF */
+    border-color: #5EEBFF;     /* Changed to #5EEBFF */
+    color: #003366; /* Set text color for contrast */
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #3DDFFF; /* Slightly darker for hover */
+    border-color: #3DDFFF;     /* Slightly darker for hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+    color: #002244; /* Darker text on hover for contrast */
+}
+
+[data-theme='dark'] .btn-primary {
+    background-color: #5EEBFF; /* Changed to #5EEBFF for dark mode */
+    border-color: #5EEBFF;     /* Changed to #5EEBFF for dark mode */
+    color: #003366; /* Set text color for contrast in dark mode */
+}
+
+[data-theme='dark'] .btn-primary:hover {
+    background-color: #3DDFFF; /* Slightly darker for dark mode hover */
+    border-color: #3DDFFF;     /* Slightly darker for dark mode hover */
+    color: #002244; /* Darker text on hover for contrast */
+}
+
+.custom-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 0.5rem;
+}
+
+/* Links */
+a {
+    color: var(--light-primary); /* Will now be #5EEBFF */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--light-hover-link); /* Will now be #3DDFFF */
+    text-decoration: underline;
+}
+
+/* Admin Login Link Specific Styling (using a, .admin-login-link already targets this) */
+.admin-login-link {
+    font-weight: 500;
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--light-admin-border);
+    border-radius: 0.3rem;
+    transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.admin-login-link:hover {
+    border-color: var(--light-primary); /* This will now be #5EEBFF on hover */
+    color: var(--light-primary); /* This will now be #5EEBFF on hover */
+    text-decoration: none;
+}
+
+.register-link {
+    font-weight: 500;
+}
+
+.register-link:hover {
+    color: var(--light-hover-link); /* Will now be #3DDFFF */
+}
+
+
+/* Dark mode toggle button */
+#darkModeToggle {
+    font-size: 1.2rem;
+}
+
+#darkModeToggle:hover {
+    color: #ffd700 !important; /* Gold color on hover for moon icon */
+}
+
+/* Error Message */
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+}
+
+[data-theme='dark'] .alert-danger {
+    background-color: #721c24;
+    color: #f8d7da;
+    border-color: #5d0f17;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 767.98px) { /* Use max-width for smaller screens */
+    .login-container {
+        padding: 15px;
+    }
+    .card-body {
+        padding: 25px;
+    }
+    .custom-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+    }
+} center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-attachment: fixed; /* Keeps the background fixed while scrolling */
+
+    color: var(--light-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh; /* Ensures body takes full viewport height */
+    display: flex;
+    flex-direction: column;
+
+    /* Required for the pseudo-element overlay */
+    position: relative;
+    z-index: 1; /* Ensures content is above the pseudo-element */
+}
+
+/* Recommended: Add a semi-transparent overlay for better text readability */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* A medium-dark transparent overlay */
+    z-index: -1; /* Places the overlay behind the body content */
+    transition: background-color 0.3s ease;
+}
+
+/* Adjust overlay darkness for dark mode */
+[data-theme='dark'] body::before {
+    background-color: rgba(0, 0, 0, 0.7); /* Slightly darker overlay in dark mode */
+}
+
+
+.navbar {
+    background-color: #003366 !important; /* Wealthy's primary blue */
+}
+
+.navbar .nav-link,
+.navbar .btn {
+    color: rgba(255, 255, 255, 0.8) !important;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .btn:hover {
+    color: rgba(255, 255, 255, 1) !important;
+}
+
+.navbar-brand img {
+    filter: brightness(1.2); /* Slightly brighten logo */
+}
+
+/* Login Container & Card */
+.login-container {
+    max-width: 450px; /* Adjust as needed */
+}
+
+.card {
+    /* Glass Effect properties */
+    background-color: rgba(255, 255, 255, 0.1); /* Translucent white for light mode glass */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle translucent border */
+    backdrop-filter: blur(10px); /* The core blur effect for glass */
+    -webkit-backdrop-filter: blur(10px); /* For Safari compatibility */
+
+    /* Existing properties, updated for transition */
+    transition: background-color 0.3s ease, border 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important; /* Keep original shadow */
+}
+
+[data-theme='dark'] .card {
+    /* Glass Effect properties for dark mode */
+    background-color: rgba(0, 0, 0, 0.2); /* Translucent black for dark mode glass */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle translucent border for dark mode */
+    /* backdrop-filter is already applied above and is theme-agnostic */
+
+    /* Existing shadow for dark mode */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Specific override for p-md-5 to change padding from 3rem to 2rem */
+@media (min-width: 768px) {
+    .p-md-5 {
+        padding: 2rem !important;
+    }
+}
+
+/* REMOVED 'h3' from this selector to allow 'text-primary' to work on H3 elements */
+.card-title, .h3 {
+    color: var(--light-text) !important; /* Ensure specific elements reflect theme */
+}
+
+.form-label {
+    color: var(--light-text);
+}
+
+.form-control {
+    background-color: var(--light-bg);
+    color: var(--light-text);
+    border-color: var(--light-border);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.form-control:focus {
+    background-color: var(--light-bg);
+    color: var(--light-text);
+    border-color: var(--light-primary);
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25); /* Bootstrap focus color */
+}
+
+[data-theme='dark'] .form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(102, 179, 255, 0.25);
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #5EEBFF; /* Changed to #5EEBFF */
+    border-color: #5EEBFF;     /* Changed to #5EEBFF */
+    color: #003366; /* Set text color for contrast */
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #3DDFFF; /* Slightly darker for hover */
+    border-color: #3DDFFF;     /* Slightly darker for hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+    color: #002244; /* Darker text on hover for contrast */
+}
+
+[data-theme='dark'] .btn-primary {
+    background-color: #5EEBFF; /* Changed to #5EEBFF for dark mode */
+    border-color: #5EEBFF;     /* Changed to #5EEBFF for dark mode */
+    color: #003366; /* Set text color for contrast in dark mode */
+}
+
+[data-theme='dark'] .btn-primary:hover {
+    background-color: #3DDFFF; /* Slightly darker for dark mode hover */
+    border-color: #3DDFFF;     /* Slightly darker for dark mode hover */
+    color: #002244; /* Darker text on hover for contrast */
+}
+
+.custom-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 0.5rem;
+}
+
+/* Links */
+a {
+    color: var(--light-primary); /* Will now be #5EEBFF */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--light-hover-link); /* Will now be #3DDFFF */
+    text-decoration: underline;
+}
+
+/* Admin Login Link Specific Styling (using a, .admin-login-link already targets this) */
+.admin-login-link {
+    font-weight: 500;
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--light-admin-border);
+    border-radius: 0.3rem;
+    transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.admin-login-link:hover {
+    border-color: var(--light-primary); /* This will now be #5EEBFF on hover */
+    color: var(--light-primary); /* This will now be #5EEBFF on hover */
+    text-decoration: none;
+}
+
+.register-link {
+    font-weight: 500;
+}
+
+.register-link:hover {
+    color: var(--light-hover-link); /* Will now be #3DDFFF */
+}
+
+
+/* Dark mode toggle button */
+#darkModeToggle {
+    font-size: 1.2rem;
+}
+
+#darkModeToggle:hover {
+    color: #ffd700 !important; /* Gold color on hover for moon icon */
+}
+
+/* Error Message */
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+}
+
+[data-theme='dark'] .alert-danger {
+    background-color: #721c24;
+    color: #f8d7da;
+    border-color: #5d0f17;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 767.98px) { /* Use max-width for smaller screens */
+    .login-container {
+        padding: 15px;
+    }
+    .card-body {
+        padding: 25px;
+    }
+    .custom-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+    }
+}
